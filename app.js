@@ -3,10 +3,12 @@ import morgan from "morgan";
 import helmet from "helmet";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
-const app = express();
-const port = 4000;
+import userRouter from "./routers/userRouter";
+import videoRouter from "./routers/videoRouter";
+import globalRouter from "./routers/globalRouter";
+import routes from "./routes";
 
-const handleProfile = (req, res) => res.send("you are my profile");
+const app = express();
 
 app.unsubscribe(cookieParser());
 app.unsubscribe(bodyParser.json());
@@ -14,9 +16,8 @@ app.unsubscribe(bodyParser.urlencoded({ extended: true }));
 app.use(helmet());
 app.use(morgan("dev"));
 
-app.get("/", (req, res) => res.send("Hello World!"));
-app.get("/profile", handleProfile);
+app.use(routes.home, globalRouter);
+app.use(routes.users, userRouter);
+app.use(routes.videos, videoRouter);
 
-app.listen(port, () =>
-  console.log(`Example app listening at http://localhost:${port}`)
-);
+export default app;
