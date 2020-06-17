@@ -1,20 +1,24 @@
 import express from "express"; //const express = require("express");
-import morgan from "morgan";
 import helmet from "helmet";
-import cookieParser from "cookie-parser";
+import morgan from "morgan";
 import bodyParser from "body-parser";
+import cookieParser from "cookie-parser";
+import { localsMiddleware } from "./middlewares";
+import routes from "./routes";
+import globalRouter from "./routers/globalRouter";
 import userRouter from "./routers/userRouter";
 import videoRouter from "./routers/videoRouter";
-import globalRouter from "./routers/globalRouter";
-import routes from "./routes";
 
 const app = express();
 
-app.unsubscribe(cookieParser());
-app.unsubscribe(bodyParser.json());
-app.unsubscribe(bodyParser.urlencoded({ extended: true }));
 app.use(helmet());
+app.set("view engine", "pug");
+app.use(cookieParser());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan("dev"));
+
+app.use(localsMiddleware);
 
 app.use(routes.home, globalRouter);
 app.use(routes.users, userRouter);
