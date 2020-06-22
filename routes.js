@@ -45,7 +45,7 @@ const routes = {
   },
   editVideo: (id) => {
     if (id) {
-      return `/${id}/edit`;
+      return `/videos/${id}/edit`;
     } else {
       return EDIT_VIDEO;
     }
