@@ -34,6 +34,8 @@ const routes = {
   logout: LOGOUT,
   search: SEARCH,
   users: USERS,
+  editProfile: EDIT_PROFILE,
+  changePassword: CHANGE_PASSWORD,
   userDetail: (id) => {
     if (id) {
       return `/users/${id}`;
@@ -41,8 +43,6 @@ const routes = {
       return USER_DETAIL;
     }
   },
-  editProfile: EDIT_PROFILE,
-  changePassword: CHANGE_PASSWORD,
   videos: VIDEOS,
   upload: UPLOAD,
   videoDetail: (id) => {
