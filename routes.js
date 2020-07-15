@@ -27,6 +27,10 @@ const GITHUB_CALLBACK = "/auth/github/callback";
 const FACEBOOK = "/auth/facebook";
 const FACEBOOK_CALLBACK = "/auth/facebook/callback";
 
+// API : render하지 않는 url, user는 접근할 수 없음
+const API = "/api";
+const REGISTER_VIEW = "/:id/view";
+
 const routes = {
   home: HOME,
   join: JOIN,
@@ -71,6 +75,8 @@ const routes = {
   facebook: FACEBOOK,
   facebookCallback: FACEBOOK_CALLBACK,
   me: ME,
+  api: API,
+  registerView: REGISTER_VIEW,
 };
 
 export default routes;
