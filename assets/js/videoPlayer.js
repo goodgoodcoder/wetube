@@ -6,6 +6,7 @@ const fullScreenBtn = document.getElementById("jsFullScreenButton");
 const currentTime = document.getElementById("currentTime");
 const totalTime = document.getElementById("totalTime");
 const volumeRange = document.getElementById("jsVolume");
+const progressBar = document.getElementById("jsProgressBar");
 
 const registerView = () => {
   const videoId = window.location.href.split("/videos/")[1];
@@ -96,6 +97,7 @@ function setTotalTime() {
 const handleEnded = () => {
   registerView();
   videoPlayer.currentTime = 0;
+  progressBar.value = 0;
   playBtn.innerHTML = '<i class="fas fa-play"></i>';
 };
 
@@ -113,6 +115,30 @@ function handleDrag(event) {
   }
 }
 
+const spacebarEvent = () => {
+  document.addEventListener("keydown", (event) => {
+    const keyCode = event.keyCode;
+    if (keyCode === 32) {
+      handlePlayClick();
+    }
+  });
+};
+
+//update progress bar on video
+const updateProgressBar = () => {
+  let percentage = Math.floor(
+    (100 * videoPlayer.currentTime) / videoPlayer.duration
+  );
+  progressBar.value = percentage;
+  progressBar.innerHTML = percentage + "% played";
+};
+
+const clickedBar = (e) => {
+  let mouseX = (e.offsetX - progressBar.offsetLeft) / progressBar.offsetWidth;
+  progressBar.value = mouseX * 100; //current position on progress bar
+  videoPlayer.currentTime = (progressBar.value * videoPlayer.duration) / 100; //set newTime to watch
+};
+
 function init() {
   videoPlayer.volume = 0.5;
   playBtn.addEventListener("click", handlePlayClick);
@@ -121,6 +147,9 @@ function init() {
   videoPlayer.addEventListener("loadedmetadata", setTotalTime);
   videoPlayer.addEventListener("ended", handleEnded);
   volumeRange.addEventListener("input", handleDrag);
+  spacebarEvent();
+  videoPlayer.addEventListener("timeupdate", updateProgressBar, false);
+  progressBar.addEventListener("click", clickedBar); //click progress bar
 }
 
 if (videoContainer) {

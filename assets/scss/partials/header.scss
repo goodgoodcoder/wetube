@@ -10,6 +10,7 @@
     grid-template-columns: repeat(3, 1fr);
     align-items: center;
     .header__column {
+      margin-left: 10px;
       i {
         color: white;
         font-size: 30px;
