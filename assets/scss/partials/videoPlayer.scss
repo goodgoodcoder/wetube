@@ -8,7 +8,6 @@
   video {
     width: 100%;
     max-width: 100%;
-    border-radius: 25px;
   }
   .videoPlayer__controls {
     opacity: 0;
@@ -24,8 +23,6 @@
     justify-content: space-between;
     grid-template-columns: refeat(2, 1fr);
     font-size: 16px;
-    border-bottom-left-radius: 30px;
-    border-bottom-right-radius: 30px;
 
     i {
       font-size: 18px;

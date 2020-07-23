@@ -2,9 +2,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  video {
+    width: 100%;
+    max-width: 800px;
+  }
   .video__info {
     width: 100%;
-    max-width: 850px;
+    max-width: 800px;
     margin-top: 25px;
     button {
       width: 100px;
@@ -23,7 +27,7 @@
     }
     .video__title {
       font-size: 22px;
-      font-weight: 300;
+      font-weight: 600;
     }
     .video__views {
       font-size: 14px;
@@ -48,12 +52,20 @@
     .video__comments-list {
       margin-top: 50px;
       li {
+        span {
+          margin-left: 10px;
+        }
+        .canDelete {
+          button {
+            font-size: 10px;
+          }
+        }
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: space-between;
         background-color: #3498db;
         color: white;
-        padding: 15px;
+        padding: 10px;
         border-radius: 20px;
         border-bottom-left-radius: 0px;
         &:not(:last-child) {
