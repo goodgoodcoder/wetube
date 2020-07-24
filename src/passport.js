@@ -20,9 +20,7 @@ passport.use(
     {
       clientID: process.env.GITHUB_CLIENT_ID,
       clientSecret: process.env.GITHUB_CLIENT_SECRET,
-      callbackURL: process.env.PRODUCTION
-        ? `https://stormy-ridge-61962.herokuapp.com${routes.githubCallback}`
-        : `http://localhost:4000${routes.githubCallback}`,
+      callbackURL: `http://localhost:4000${routes.githubCallback}`,
     },
     githubLoginCallback
   )
